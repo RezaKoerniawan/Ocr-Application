@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "384419537007",
+    "project_id": "ocr-application-be616",
+    "storage_bucket": "ocr-application-be616.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:384419537007:android:478b582e53eefbea50ad9a",
+        "android_client_info": {
+          "package_name": "com.reza.ocrapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "384419537007-4c5qqq6dnojleivv14cl7j2o3o0ut4np.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkTYlu0h5okxzgCWS2bSDdTPE98hklv3U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "384419537007-4c5qqq6dnojleivv14cl7j2o3o0ut4np.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
