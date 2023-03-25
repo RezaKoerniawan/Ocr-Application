@@ -32,6 +32,13 @@ class SecondFragment : Fragment() {
         binding.buttonSecond.setOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
+
+        if (arguments != null) {
+            binding.image.setImageBitmap(requireArguments().getParcelable("image"))
+            binding.textviewResultOcr.setText(requireArguments().getString("ocr_text"))
+            binding.textviewDistanceLocation.setText(requireArguments().getString("lat"))
+            binding.textviewEstimateTime.setText(requireArguments().getString("long"))
+        }
     }
 
     override fun onDestroyView() {
