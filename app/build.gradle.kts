@@ -49,6 +49,7 @@ dependencies {
     implementation(libs.navigation.ui.ktx)
     implementation(libs.firebase.ml.vision)
     implementation(libs.play.services.vision)
+    implementation(libs.play.services.location)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
