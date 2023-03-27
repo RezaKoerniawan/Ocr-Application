@@ -5,7 +5,7 @@
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="capture_image">Capture Image</string>
-    <string name="previous">Previous</string>
+    <string name="take_picture_again">Take Picture Again</string>
     <string name="result_hint">Result Text</string>
     <string name="distance_hint">Distance to Location</string>
     <string name="estimate_hint">Estimate time to Location</string>
