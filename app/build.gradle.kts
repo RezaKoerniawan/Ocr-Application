@@ -50,6 +50,7 @@ dependencies {
     implementation(libs.firebase.ml.vision)
     implementation(libs.play.services.vision)
     implementation(libs.play.services.location)
+    implementation(libs.firebase.database.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)

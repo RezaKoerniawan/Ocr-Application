@@ -26,9 +26,12 @@ import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ml.vision.FirebaseVision
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import com.google.firebase.ml.vision.text.FirebaseVisionText
+import com.reza.ocrapplication.data.OcrModel
 import com.reza.ocrapplication.databinding.FragmentFirstBinding
 import com.reza.ocrapplication.utils.PermissionResultListener
 import com.reza.ocrapplication.utils.RequestPermissionListener
@@ -43,6 +46,7 @@ class FirstFragment : Fragment() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var latitude: Double = 0.0
     private var longitude: Double = 0.0
+    private lateinit var dbRef: DatabaseReference
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -60,6 +64,7 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+        dbRef = FirebaseDatabase.getInstance().getReference("OcrData")
 
         binding.buttonFirst.setOnClickListener {
             requestMultiplePermissionWithListener()
@@ -228,6 +233,7 @@ class FirstFragment : Fragment() {
         }
     }
 
+
     private fun isLocationEnabled(): Boolean {
         val locationManager: LocationManager =
             activity?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
@@ -252,6 +258,8 @@ class FirstFragment : Fragment() {
     }
 
     private fun navigateToNextScreen(imageCapture: Bitmap, ocrText: String) {
+        saveOcrData(ocrText, latitude.toString(), longitude.toString())
+
         val bundleNextScreen = Bundle()
         bundleNextScreen.putParcelable("image", imageCapture)
         bundleNextScreen.putString("ocr_text", ocrText)
@@ -262,6 +270,25 @@ class FirstFragment : Fragment() {
             R.id.action_FirstFragment_to_SecondFragment,
             bundleNextScreen
         )
+    }
+
+    private fun saveOcrData(
+        ocrText: String,
+        ocrDistance: String,
+        ocrEstimate: String
+    ) {
+        val ocrId = dbRef.push().key!!
+
+        val dataOcr = OcrModel(ocrId, ocrText, ocrDistance, ocrEstimate)
+
+        dbRef.child(ocrId).setValue(dataOcr)
+            .addOnCompleteListener {
+               showToast("Data inserted successfully")
+
+            }.addOnFailureListener { err ->
+              showToast("Error ${err.message}")
+            }
+
     }
 
 }
